@@ -12,8 +12,8 @@
         <input type="number" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
     </div>
     <div class="form-group">  
-        <label for="mud_height">Mud Height(ppg)</label>
-        <input type="number" id="mud_height" name="mud_height" class="form-control mx-sm-3" placeholder="9.6">
+        <label for="mud_weight">Mud Weight(ppg)</label>
+        <input type="number" id="mud_weight" name="mud_weight" class="form-control mx-sm-3" placeholder="9.6">
 
     </div>
     <div class="form-group">  
@@ -22,7 +22,7 @@
 
     </div>
     <h5>Pressure Loss: 
-      
+    
     </h5>
     <div class="form-group">  
         <label for="surf_equip">Surface Equipment(psi)</label>
@@ -47,6 +47,7 @@
         <input type="number" id="bit_nozzles" name="bit_nozzles" class="form-control mx-sm-3" placeholder="1200">
 
     </div>
+
 
 
     <div class="form-group">  
@@ -74,7 +75,7 @@
           <tr>
             <th scope="col">S/no.</th>
             <th scope="col">Drilling Hole</th>
-            <th scope="col">Mud Height</th>
+            <th scope="col">Mud Weight</th>
             <th scope="col">Depth</th>
             <th scope="col">Sur. Equip</th>
             <th scope="col">In. Drill Pipe</th>
@@ -95,7 +96,7 @@
           <tr>
             <th scope="row">{{loop.index}}</th>
             <td>{{rw['ecd_drill']}}</td>
-            <td>{{rw['mud_height']}}</td>
+            <td>{{rw['mud_weight']}}</td>
             <td>{{rw['depth']}}</td>
             <td>{{rw['surf_equip']}}</td>
             <td>{{rw['in_drill_pipe']}}</td>
