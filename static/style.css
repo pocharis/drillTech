@@ -1,0 +1,118 @@
+body{ 
+    /* color: floralwhite;
+    background-image: url('bg.jpg'), linear-gradient(rgba(75, 67, 67, 0.5),rgba(0,0,0,0.5));;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover; */
+
+    background: linear-gradient(
+        rgba(249, 119, 76,.75), 
+        rgba(51, 46, 44, 0.85)
+      ),
+      
+      url('bg.jpg');
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: cover;
+      color: floralwhite;
+ 
+}
+
+.head-section{
+ margin-top: 40px;
+}
+
+.head-section p{
+    width: 500px;
+    padding: 20px 10px 30px 10px;
+    margin: 0 auto !important;
+}
+
+.drilltech{
+    margin: 0 auto;
+    width: 50%;
+    padding:100px 0px 100px 0px ;
+
+} 
+
+.drilltech a{
+    width: 500px;
+}
+
+.calc{
+    
+    padding: 50px 20px 50px 20px;
+    margin: 0 auto;
+    width: 65%;
+    
+}
+
+.form-group{
+    margin-bottom: 10px !important;
+}
+
+.pressure{
+    width: 400px;
+    color: rgba(51, 46, 44, 0.85);
+    padding: 30;
+}
+
+#ecd_drill{
+    margin-left: 40px !important;
+}
+
+#mud_height{
+    margin-left: 64px !important;
+}
+
+#formation_pres{
+    margin-left: 11px !important;
+}
+
+
+#overbalance_margin{
+    margin-left: 8px !important;
+}
+
+#depth{
+    margin-left: 120px !important;
+}
+
+#in_drill_pipe{
+    margin-left: 40px !important;
+}
+
+#in_drill_collars{
+    margin-left: 21px !important;
+}
+
+#bit_nozzles{
+    margin-left: 69px !important;
+}
+
+#annulus{
+    margin-left: 90px !important;
+}
+
+.button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 15px 100px;
+    cursor: pointer;
+    border-radius: 6px;
+    width: 220px;
+  }
+
+  .calc-ecd, .calc-mud{
+    width: 50%;
+  }
+
+
+
+
