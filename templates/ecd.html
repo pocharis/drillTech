@@ -9,11 +9,11 @@
 <form class="form-inline form-label " action="/drilltech/ecd_calc" method="POST">
     <div class="form-group">
         <label for="ecd_drill">Drilling Hole(inches)</label>
-        <input type="number" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
+        <input type="number" step="0.1" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
     </div>
     <div class="form-group">  
         <label for="mud_weight">Mud Weight(ppg)</label>
-        <input type="number" id="mud_weight" name="mud_weight" class="form-control mx-sm-3" placeholder="9.6">
+        <input type="number" step="0.1" id="mud_weight" name="mud_weight" class="form-control mx-sm-3" placeholder="9.6">
 
     </div>
     <div class="form-group">  
@@ -100,7 +100,6 @@
             <td>{{rw['depth']}}</td>
             <td>{{rw['surf_equip']}}</td>
             <td>{{rw['in_drill_pipe']}}</td>
-            <td>{{rw['in_drill_collars']}}</td>
             <td>{{rw['in_drill_collars']}}</td>
             <td>{{rw['bit_nozzles']}}</td>
             <td>{{rw['annulus']}}</td>

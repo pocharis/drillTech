@@ -9,12 +9,11 @@
 <form class="form-inline form-label " action="/drilltech/mud_calc" method="POST">
     <div class="form-group">
         <label for="ecd_drill">Drilling Hole(inches)</label>
-        <input type="number" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
+        <input type="number" step="0.1" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
     </div>
     <div class="form-group">  
         <label for="formation_pres">Formation Pressure(psi)</label>
         <input type="number" id="formation_pres" name="formation_pres" class="form-control mx-sm-3" placeholder="4990">
-
     </div>
     <div class="form-group">  
         <label for="depth">Depth(ft)</label>
@@ -35,11 +34,10 @@
     </div>
 </form>
 </div>
-      <!-- {% if request.args.get('total_pressure') and request.args.get('ecd') %}
+      {% if request.args.get('density')%}
         <div class="col-sm-4">
           <h1>Results:</h1>
-          <p>ECD: {{ request.args.get('ecd') }}</p>
-          <p>Total Pressure: {{request.args.get('total_pressure')}}</p>
+          <p>Mud Depth: {{ request.args.get('density') }}</p>
           </div>
         </div>
       {% endif %}
@@ -50,16 +48,10 @@
           <tr>
             <th scope="col">S/no.</th>
             <th scope="col">Drilling Hole</th>
-            <th scope="col">Mud Height</th>
+            <th scope="col">Formation Pressure</th>
+            <th scope="col">Overbalance Margin</th>
             <th scope="col">Depth</th>
-            <th scope="col">Sur. Equip</th>
-            <th scope="col">In. Drill Pipe</th>
-            <th scope="col">In. Drill Col</th>
-            <th scope="col">Bit Nozzles</th>
-            <th scope="col">Annulus</th>
-            <th scope="col">Ecd</th>
-            <th scope="col"><b>Total Pressure</b></th>
-
+            <th scope="col">Mud Density</th>
           </tr>
       </thead>
       <tbody>
@@ -71,17 +63,10 @@
           <tr>
             <th scope="row">{{loop.index}}</th>
             <td>{{rw['ecd_drill']}}</td>
-            <td>{{rw['mud_height']}}</td>
+            <td>{{rw['formation_pres']}}</td>
             <td>{{rw['depth']}}</td>
-            <td>{{rw['surf_equip']}}</td>
-            <td>{{rw['in_drill_pipe']}}</td>
-            <td>{{rw['in_drill_collars']}}</td>
-            <td>{{rw['in_drill_collars']}}</td>
-            <td>{{rw['bit_nozzles']}}</td>
-            <td>{{rw['annulus']}}</td>
-            <td>{{rw['ecd']}}</td>
-            <td>{{rw['total_pressure']}}</td>
-            
+            <td>{{rw['overbalance_margin']}}</td>
+            <td>{{rw['density']}}</td>
           </tr>
        
        
@@ -89,6 +74,6 @@
     </tbody>
     </table>
 
-      {% endif %} -->
+      {% endif %}
 
   {% endblock %}

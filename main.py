@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from flask_pymongo import pymongo
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ def drilltech():
 #route to ecd page
 @app.route('/drilltech/ecd')
 def ecd():
-    collection.delete_many({'calc_type':'ecd'})
+    # collection.delete_many({'calc_type':'ecd'})
 
     data = collection.find({'calc_type':'ecd'})
     return render_template('ecd.html', data = data)
@@ -38,7 +38,7 @@ def ecd():
 def ecd_calc():
 
     ecd_drill = float(request.form['ecd_drill'])
-    mud_weight = int(request.form['mud_weight'])
+    mud_weight = float(request.form['mud_weight'])
     depth = int(request.form['depth'])
 
     surf_equip = int(request.form['surf_equip'])
@@ -67,6 +67,36 @@ def ecd_calc():
     return redirect(url_for('ecd', ecd = ecd, total_pressure = total_pressure ))
 
 
+#route to mud page
+@app.route('/drilltech/mud')
+def mud():
+    # collection.delete_many({'calc_type':'mud'})
+
+    data = collection.find({'calc_type':'mud'})
+    return render_template('mud.html', data = data)
+
+#route to ecd calculations
+@app.route('/drilltech/mud_calc', methods = ['POST', 'GET'])
+def mud_calc():
+
+    ecd_drill = float(request.form['ecd_drill'])
+    formation_pres = int(request.form['formation_pres'])
+    depth = int(request.form['depth'])
+    overbalance_margin = int(request.form['overbalance_margin'])
+    
+
+    density = round((0.052 * 10 * depth)/(0.052 * depth), 2)
+    
+    data = {'calc_type':'mud',
+        'ecd_drill': ecd_drill,
+        'formation_pres': formation_pres,
+        'depth':depth,
+        'overbalance_margin':overbalance_margin,
+        'density':density,
+    }
+
+    collection.insert(data)
+    return redirect(url_for('mud', density = density))
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
