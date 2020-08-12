@@ -98,6 +98,45 @@ def mud_calc():
     collection.insert(data)
     return redirect(url_for('mud', density = density))
 
+
+
+
+#route to leak-off test page
+@app.route('/drilltech/leak_off')
+def leak_off():
+    # collection.delete_many({'calc_type':'mud'})
+
+    data = collection.find({'calc_type':'leak_off'})
+    return render_template('leak-off.html', data = data)
+
+#route to ecd calculations
+@app.route('/drilltech/leak_off_calc', methods = ['POST', 'GET'])
+def leak_off_calc():
+    ecd_drill = int(request.form['ecd_drill'])
+    leak_off = int(request.form['leak_off'])
+    casing_shoe = int(request.form['casing_shoe'])
+    mud_weight = float(request.form['mud_weight'])
+    
+
+    max_mud_weight = round((leak_off / (0.052 * casing_shoe)) + mud_weight, 2)
+    max_breakdown_pressure = round(leak_off + (mud_weight * 0.052 * casing_shoe), 2)
+    fracture_gradient = round(max_breakdown_pressure/casing_shoe,2)
+    
+    data = {'calc_type':'leak_off',
+        'ecd_drill': ecd_drill,
+        'leak_off': leak_off,
+        'casing_shoe': casing_shoe,
+        'mud_weight': mud_weight,
+
+        'max_mud_weight':max_mud_weight,
+        'max_breakdown_pressure':max_breakdown_pressure,
+        'fracture_gradient':fracture_gradient,
+    }
+
+    collection.insert(data)
+    return redirect(url_for('leak_off', max_mud_weight = max_mud_weight, max_breakdown_pressure = max_breakdown_pressure, fracture_gradient = fracture_gradient))
+
+
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
 
