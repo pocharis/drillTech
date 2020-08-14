@@ -2,23 +2,23 @@
 {% block calculations %}
 
 
-<h3 class="text-center pressure">Calculating the Equivalent Circulating Density(ECD)</h3>
 <div class="row">
-
-<div class="col-sm-8">
+  <div class="form-style">
+    <h3 class="text-center pressure">Calculating the Equivalent Circulating Density(ECD)</h3>
+<div class="col-sm-8 ">
 <form class="form-inline form-label " action="/drilltech/ecd_calc" method="POST">
     <div class="form-group">
         <label for="ecd_drill">Drilling Hole(inches)</label>
-        <input type="number" step="0.1" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
+        <input type="number" required step="0.1" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
     </div>
     <div class="form-group">  
         <label for="mud_weight">Mud Weight(ppg)</label>
-        <input type="number" step="0.1" id="mud_weight" name="mud_weight" class="form-control mx-sm-3" placeholder="9.6">
+        <input type="number" required step="0.1" id="mud_weight" name="mud_weight" class="form-control mx-sm-3" placeholder="9.6">
 
     </div>
     <div class="form-group">  
         <label for="depth">Depth(ft)</label>
-        <input type="number" id="depth" name="depth" class="form-control mx-sm-3" placeholder="10000">
+        <input type="number" required id="depth" name="depth" class="form-control mx-sm-3" placeholder="10000">
 
     </div>
     <h5>Pressure Loss: 
@@ -26,25 +26,25 @@
     </h5>
     <div class="form-group">  
         <label for="surf_equip">Surface Equipment(psi)</label>
-        <input type="number" id="surf_equip" name="surf_equip" class="form-control mx-sm-3" placeholder="50">
+        <input type="number" required id="surf_equip" name="surf_equip" class="form-control mx-sm-3" placeholder="50">
 
     </div> 
     
     <div class="form-group">  
         <label for="in_drill_pipe">Inside Drill Pipe(psi)</label>
-        <input type="number" id="in_drill_pipe" name="in_drill_pipe" class="form-control mx-sm-3" placeholder="500">
+        <input type="number" required id="in_drill_pipe" name="in_drill_pipe" class="form-control mx-sm-3" placeholder="500">
 
     </div> 
     
     <div class="form-group">  
         <label for="in_drill_collars">Inside Drill Collars(psi)</label>
-        <input type="number" id="in_drill_collars" name="in_drill_collars" class="form-control mx-sm-3" placeholder="150">
+        <input type="number" required id="in_drill_collars" name="in_drill_collars" class="form-control mx-sm-3" placeholder="150">
 
     </div> 
     
     <div class="form-group">  
         <label for="bit_nozzles">Bit Nozzles(psi)</label>
-        <input type="number" id="bit_nozzles" name="bit_nozzles" class="form-control mx-sm-3" placeholder="1200">
+        <input type="number" required id="bit_nozzles" name="bit_nozzles" class="form-control mx-sm-3" placeholder="1200">
 
     </div>
 
@@ -52,22 +52,25 @@
 
     <div class="form-group">  
         <label for="annulus">Annulus(psi)</label>
-        <input type="number" id="annulus" name="annulus" class="form-control mx-sm-3" placeholder="200">
+        <input type="number" required id="annulus" name="annulus" class="form-control mx-sm-3" placeholder="200">
 
     </div>
     <div class="calc-mud">
         <button type="submit" class="button">Calculate ECD</button>
     </div>
 </form>
-</div>
-      {% if request.args.get('total_pressure') and request.args.get('ecd') %}
-        <div class="col-sm-4">
+{% if request.args.get('total_pressure') and request.args.get('ecd') %}
+        <div class="col-sm-4 inline-block">
           <h1>Results:</h1>
           <p>ECD: {{ request.args.get('ecd') }}</p>
           <p>Total Pressure: {{request.args.get('total_pressure')}}</p>
           </div>
         </div>
       {% endif %}
+</div>
+</div>
+
+      
 
       {% if data.count() >= 1 %}
       <table class="table table-dark">

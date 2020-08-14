@@ -2,29 +2,30 @@
 {% block calculations %}
 
 
-<h3 class="text-center pressure">Calculating the D-Exponent</h3>
-<div class="row">
 
+<div class="row">
+  <div class="form-style">
+    <h3 class="text-center pressure">Calculating the d-exponent</h3>
 <div class="col-sm-8">
 <form class="form-inline form-label " action="/drilltech/d-exponent-calc" method="POST">
     <div class="form-group">
         <label for="rate_of_penetration">Rate of Pen.(ft/hr)</label>
-        <input type="number"  id="rate_of_penetration" name="rate_of_penetration" class="form-control mx-sm-3" placeholder="60">
+        <input type="number" required id="rate_of_penetration" name="rate_of_penetration" class="form-control mx-sm-3" placeholder="60">
     </div>
     <div class="form-group">  
         <label for="rotary_speed">Rotary Speed(rpm)</label>
-        <input type="number" id="rotary_speed" name="rotary_speed" class="form-control mx-sm-3" placeholder="100">
+        <input type="number" required id="rotary_speed" name="rotary_speed" class="form-control mx-sm-3" placeholder="100">
     </div>
     
     <div class="form-group">  
         <label for="bit_weight">Weight of Bit(klb)</label>
-        <input type="number" id="bit_weight" name="bit_weight" class="form-control mx-sm-3" placeholder="25">
+        <input type="number" required id="bit_weight" name="bit_weight" class="form-control mx-sm-3" placeholder="25">
 
     </div>
 
     <div class="form-group">  
         <label for="bit_diameter">Bit Diameter(in.)</label>
-        <input type="number" step ="0.1" id="bit_diameter" name="bit_diameter" class="form-control mx-sm-3" placeholder="8.5">
+        <input type="number" required step ="0.1" id="bit_diameter" name="bit_diameter" class="form-control mx-sm-3" placeholder="8.5">
 
     </div>
 
@@ -33,16 +34,19 @@
         <button type="submit" class="button">Calculate D-Exponent</button>
     </div>
 </form>
+{% if request.args.get('d_exponent')%}
+<div class="col-sm-4">
+  <h1>Results:</h1>
+  <p>D-Exponent: {{ request.args.get('d_exponent') }}</p>       
+  </div>
 </div>
-      {% if request.args.get('d_exponent')%}
-        <div class="col-sm-4">
-          <h1>Results:</h1>
-          <p>D-Exponent: {{ request.args.get('d_exponent') }}</p>       
-          </div>
-        </div>
-      {% endif %}
+{% endif %}
 
-      {% if data.count() >= 1 %}
+{% if data.count() >= 1 %}
+
+</div>
+</div>
+    
       <table class="table table-dark">
         <thead>
           <tr>

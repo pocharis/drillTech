@@ -254,8 +254,9 @@ def drill_collar_calc():
 def gallery():
     return render_template('gallery.html')
 
-
-
+@app.route('/drillinfo')
+def drillinfo():
+    return render_template('drillinfo.html')
 
 
 if __name__ == '__main__':

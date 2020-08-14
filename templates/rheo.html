@@ -2,21 +2,22 @@
 {% block calculations %}
 
 
-<h3 class="text-center pressure">Calculating the Length of Drill Collar</h3>
-<div class="row">
 
+<div class="row">
+  <div class="form-style">
+    <h3 class="text-center pressure">Calculating the Rheological Properties</h3>
 <div class="col-sm-8">
 <form class="form-inline form-label " action="/drilltech/rheo-calc" method="POST">
     
     <div class="form-group">  
         <label for="rpm600">rpm600</label>
-        <input type="number" id="rpm600" name="rpm600" class="form-control mx-sm-3" placeholder="80">
+        <input type="number" id="rpm600" name="rpm600"  required class="form-control mx-sm-3" placeholder="80">
 
     </div>
 
     <div class="form-group">  
         <label for="rpm300">rpm300</label>
-        <input type="number" id="rpm300" name="rpm300" class="form-control mx-sm-3" placeholder="50">
+        <input type="number" id="rpm300" name="rpm300" required class="form-control mx-sm-3" placeholder="50">
 
     </div>
 
@@ -25,15 +26,18 @@
         <button type="submit" id="calc-rheo" class="button">Calculate Rheological Properties</button>
     </div>
 </form>
+{% if request.args.get('yeild_point')%}
+<div class="col-sm-4">
+  <h1>Results:</h1>
+  <p>Yield Point: {{ request.args.get('yeild_point') }}</p>    
+  <p>Plactic Viscosity: {{ request.args.get('plastic_viscosity') }}</p>       
+  </div>
 </div>
-      {% if request.args.get('yeild_point')%}
-        <div class="col-sm-4">
-          <h1>Results:</h1>
-          <p>Yield Point: {{ request.args.get('yeild_point') }}</p>    
-          <p>Plactic Viscosity: {{ request.args.get('plastic_viscosity') }}</p>       
-          </div>
-        </div>
-      {% endif %}
+{% endif %}
+
+
+</div>
+</div>    
 
       {% if data.count() >= 1 %}
       <table class="table table-dark">

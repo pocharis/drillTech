@@ -2,28 +2,28 @@
 {% block calculations %}
 
 
-<h3 class="text-center pressure">Calculating the Mud Density</h3>
 <div class="row">
-
-<div class="col-sm-8">
+  <div class="form-style">
+    <h3 class="text-center pressure">Calculating the Mud Density</h3>
+<div class="col-sm-8 ">
 <form class="form-inline form-label " action="/drilltech/mud_calc" method="POST">
     <div class="form-group">
         <label for="ecd_drill">Drilling Hole(inches)</label>
-        <input type="number" step="0.1" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
+        <input type="number" required step="0.1" id="ecd_drill" name="ecd_drill" class="form-control mx-sm-3" placeholder="8.5">
     </div>
     <div class="form-group">  
         <label for="formation_pres">Formation Pressure(psi)</label>
-        <input type="number" id="formation_pres" name="formation_pres" class="form-control mx-sm-3" placeholder="4990">
+        <input type="number" required id="formation_pres" name="formation_pres" class="form-control mx-sm-3" placeholder="4990">
     </div>
     <div class="form-group">  
         <label for="depth">Depth(ft)</label>
-        <input type="number" id="depth" name="depth" class="form-control mx-sm-3" placeholder="200">
+        <input type="number" required id="depth" name="depth" class="form-control mx-sm-3" placeholder="200">
 
     </div>
 
     <div class="form-group">  
         <label for="overbalance_margin">Overbalance Margin(psi)</label>
-        <input type="number" id="overbalance_margin" name="overbalance_margin" class="form-control mx-sm-3" placeholder="10000">
+        <input type="number" required id="overbalance_margin" name="overbalance_margin" class="form-control mx-sm-3" placeholder="10000">
 
     </div>
 
@@ -33,16 +33,19 @@
         <button type="submit" class="button">Calculate Mud Density</button>
     </div>
 </form>
-</div>
-      {% if request.args.get('density')%}
+
+{% if request.args.get('density')%}
         <div class="col-sm-4">
           <h1>Results:</h1>
           <p>Mud Depth: {{ request.args.get('density') }}</p>
           </div>
         </div>
       {% endif %}
+ {% if data.count() >= 1 %}
 
-      {% if data.count() >= 1 %}
+</div>
+</div>
+      
       <table class="table table-dark">
         <thead>
           <tr>

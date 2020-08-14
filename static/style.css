@@ -14,24 +14,45 @@ body{
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: cover;
-      color: floralwhite;
+      color: slategray;
  
 }
 
 .head-section{
- margin-top: 40px;
+ margin: 40px;
+
+ background-color: antiquewhite;
+ padding: 20px;
+ border-radius: 10px;
+}
+
+.head-section h4{
+    color:rgb(33, 36, 35);
 }
 
 .head-section p{
     width: 500px;
     padding: 20px 10px 30px 10px;
     margin: 0 auto !important;
+      
 }
+
+
+.form-style{
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+
+
 
 .drilltech{
     margin: 0 auto;
     width: 50%;
     padding:100px 0px 100px 0px ;
+    
 
 } 
 
@@ -62,7 +83,7 @@ body{
 }
 
 #mud_weight{
-    margin-left: 62px !important;
+    margin-left: 61px !important;
 }
 
 #formation_pres{
@@ -95,21 +116,21 @@ body{
 }
 
 
-#ecd_drill{
+/* #ecd_drill{
     margin-left: 22px !important;
-}
+} */
 
 #leak_off{
-    margin-left: 7px !important;
+    margin-left: 26px !important;
 }
 
 #casing_shoe{
-    margin-left: 51px !important;
+    margin-left: 73px !important;
 }
 
-#mud_weight{
+/* #mud_weight{
     margin-left: 40px !important;
-}
+} */
 
 
 #rate_of_penetration{
@@ -137,8 +158,8 @@ body{
     margin-left: 125px !important;
 }
 
-#mud_weight{
-    margin-left: 99px !important;
+#mud_weight_{
+    margin-left: 98px !important;
 }
 
 
@@ -188,3 +209,25 @@ body{
 
 
 
+.drillinfo{
+    width: 600px;
+    margin:20 auto;
+    padding: 10px;
+}
+
+.drillinfo h2{
+    color:rgb(33, 36, 35);
+}
+.powergen{
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 20px 15px;
+    box-shadow: 2px gray;
+    margin: 20px;
+    background-color: antiquewhite;
+}
+
+#powergen img{
+    max-width: 100%;
+    height: 300px;
+}
