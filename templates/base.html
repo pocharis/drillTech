@@ -14,10 +14,10 @@
     
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="/gallery" class="nav-item nav-link">Gallery</a>
-                    <a href="/drilltech" class="nav-item nav-link" tabindex="-1">Drill Technology</a>
-                    <a href="/drillinfo" class="nav-item nav-link">Drill Information</a>
+                    <a href="/" class="nav-item nav-link {{ 'active' if active_page == 'home' else ''}} ">Home</a>
+                    <a href="/gallery" class="nav-item {{ 'active' if active_page == 'gallery' else ''}}   nav-link">Gallery</a>
+                    <a href="/drilltech" class="nav-item  {{ 'active' if active_page == 'drilltech' else ''}}  nav-link" tabindex="-1">Drill Technology</a>
+                    <a href="/drillinfo" class="nav-item {{ 'active' if active_page == 'drillinfo' else ''}} nav-link">Drill Information</a>
 
                 </div>
                 
