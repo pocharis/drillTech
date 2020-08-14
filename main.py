@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request, url_for
 from flask_pymongo import pymongo
+import math
 
 app = Flask(__name__)
 
@@ -104,12 +105,12 @@ def mud_calc():
 #route to leak-off test page
 @app.route('/drilltech/leak_off')
 def leak_off():
-    # collection.delete_many({'calc_type':'mud'})
+    # collection.delete_many({'calc_type':'leak_off'})
 
     data = collection.find({'calc_type':'leak_off'})
     return render_template('leak-off.html', data = data)
 
-#route to ecd calculations
+#route to leak_off calculations
 @app.route('/drilltech/leak_off_calc', methods = ['POST', 'GET'])
 def leak_off_calc():
     ecd_drill = int(request.form['ecd_drill'])
@@ -135,6 +136,126 @@ def leak_off_calc():
 
     collection.insert(data)
     return redirect(url_for('leak_off', max_mud_weight = max_mud_weight, max_breakdown_pressure = max_breakdown_pressure, fracture_gradient = fracture_gradient))
+
+
+
+
+
+
+
+
+
+#route to d-exponent  page
+@app.route('/drilltech/d-exponent')
+def d_exponent():
+    # collection.delete_many({'calc_type':'mud'})
+
+    data = collection.find({'calc_type':'d_exponent'})
+    return render_template('d-exponent.html', data = data)
+
+#route to d-exponent calculations
+@app.route('/drilltech/d-exponent-calc', methods = ['POST', 'GET'])
+def d_exponent_calc():
+    rate_of_penetration = int(request.form['rate_of_penetration'])
+    rotary_speed = int(request.form['rotary_speed'])
+    bit_weight = int(request.form['bit_weight'])
+    bit_diameter = float(request.form['bit_diameter'])
+    
+
+    d_exponent = -1 * round(math.log10((rate_of_penetration/60) * rotary_speed) / math.log10((12 * bit_weight)/(1000 * bit_diameter)), 2)
+    
+    data = {'calc_type':'d_exponent',
+        'd_exponent': d_exponent,
+        'rate_of_penetration': rate_of_penetration,
+        'rotary_speed': rotary_speed,
+        'bit_weight': bit_weight,
+        'bit_diameter': bit_diameter
+
+    }
+
+    collection.insert(data)
+    return redirect(url_for('d_exponent', d_exponent = d_exponent))
+
+
+
+
+
+
+#route to rheo  page
+@app.route('/drilltech/rheo')
+def rheo():
+    # collection.delete_many({'calc_type':'rheo'})
+
+    data = collection.find({'calc_type':'rheo'})
+    return render_template('rheo.html', data = data)
+
+#route to rheo calculations
+@app.route('/drilltech/rheo-calc', methods = ['POST', 'GET'])
+def rheo_calc():
+    rpm600 = int(request.form['rpm600'])
+    rpm300 = int(request.form['rpm300'])
+    
+    
+
+    plastic_viscosity = rpm600 - rpm300
+    yeild_point = rpm300 - plastic_viscosity
+    
+    data = {'calc_type':'rheo',
+        'rpm600': rpm600,
+        'rpm300': rpm300,
+        'plastic_viscosity': plastic_viscosity,
+        'yeild_point': yeild_point,
+        }
+
+    collection.insert(data)
+    return redirect(url_for('rheo', plastic_viscosity = plastic_viscosity, yeild_point = yeild_point))
+
+
+
+
+
+
+#route to drill_collar page
+@app.route('/drilltech/drill-collar')
+def drill_collar():
+    # collection.delete_many({'calc_type':'drill_collar_calc'})
+
+    data = collection.find({'calc_type':'drill_collar_calc'})
+    return render_template('drill-collar.html', data = data)
+
+#route to drill_collar calculations
+@app.route('/drilltech/drill-collar-calc', methods = ['POST', 'GET'])
+def drill_collar_calc():
+    desired_wob = int(request.form['desired_wob'])
+    safety_factor = int(request.form['safety_factor'])
+    drill_collar_weight = int(request.form['drill_collar_weight'])
+    mud_weight = float(request.form['mud_weight'])
+    
+    BF = round((65.5 - mud_weight)/65.5,2)
+    length_hole_assembly = round((desired_wob * (safety_factor/100))/(drill_collar_weight * BF),3)
+    
+    data = {'calc_type':'drill_collar_calc',
+        'desired_wob': desired_wob,
+        'safety_factor': safety_factor,
+        'drill_collar_weight': drill_collar_weight,
+        'mud_weight': mud_weight,
+        'BF':BF,
+        'length_hole_assembly':length_hole_assembly
+    }
+
+    collection.insert(data)
+    return redirect(url_for('drill_collar', BF = BF, length_hole_assembly = length_hole_assembly))
+
+
+
+
+#route to gallery page
+@app.route('/gallery')
+def gallery():
+    return render_template('gallery.html')
+
+
+
 
 
 if __name__ == '__main__':
